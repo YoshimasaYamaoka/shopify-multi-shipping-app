@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node deploy-server.js",
-    "dev": "node deploy-server.js",
+    "start": "node multi-shipping-app.js",
+    "dev": "node multi-shipping-app.js",
     "build": "echo 'No build step required'"
   },
   "dependencies": {
