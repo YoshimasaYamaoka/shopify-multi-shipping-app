@@ -21,7 +21,8 @@ app.use((req, res, next) => {
     // Check if this is a Shopify installation request
     if (req.query.shop) {
       const shop = req.query.shop;
-      const installUrl = `https://${shop}/admin/oauth/authorize?client_id=e518a7b3f814fc1da04e6952d4fee9d2&scope=read_products&redirect_uri=https://shopify-multi-shipping-app.onrender.com/auth/callback&state=12345`;
+      const installUrl =
+  `https://${shop}/admin/oauth/authorize?client_id=e518a7b3f814fc1da04e6952d4fee9d2&scope=read_products,write_products,read_orders,write_orders&redirect_uri=https://shopify-multi-shipping-app.onrender.com/auth/callback&state=12345`;
 
       console.log(`Installation request from shop: ${shop}`);
       console.log(`Redirecting to: ${installUrl}`);
