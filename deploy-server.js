@@ -16,9 +16,24 @@ app.use((req, res, next) => {
   next();
 });
 
-// Root route - Shopify App Home
-app.get('/', (req, res) => {
-  res.send(`
+// Root route - Shopify App Home with OAuth handling
+  app.get('/', (req, res) => {
+    // Check if this is a Shopify installation request
+    if (req.query.shop) {
+      const shop = req.query.shop;
+      const installUrl =
+  `https://${shop}/admin/oauth/authorize?client_id=e518a7b3f814fc1da04e6952d4fee9d2&scope=write_products,read_products,write_orders,read_orders,write_customers,read_c
+  ustomers,write_draft_orders,read_draft_orders,write_shipping,read_shipping&redirect_uri=https://shopify-multi-shipping-app.onrender.com/auth/callback&state=12345`;
+
+      console.log(`Installation request from shop: ${shop}`);
+      console.log(`Redirecting to: ${installUrl}`);
+
+      // Redirect to Shopify OAuth page
+      return res.redirect(installUrl);
+    }
+
+    // Normal homepage display
+    res.send(`
     <!DOCTYPE html>
     <html>
     <head>
